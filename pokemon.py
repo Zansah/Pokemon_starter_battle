@@ -1,6 +1,7 @@
 import random
 import time
 import sys
+# changes
 
 health_stats = random.randint(40, 50)
 other_stats = random.randint(6, 8)
@@ -9,6 +10,14 @@ class Player:
     def __init__(self,name, pokemon_list):
         self.name = name
         self.pokemon_list = pokemon_list
+    
+    def get_name(self):
+        self.name = input("Enter the name you would like to go by: ")
+    
+    def slow_print(self, text):
+        for char in text:
+            print(char, end="", flush = True)
+            time.sleep(.07)
 
 class Type:
     def __init__(self, name, weaknesses, strengths):
@@ -105,26 +114,82 @@ def battle_interface(player, opponent):
             print("Invalid Choice.")
 
 def main():
-    print("Hello Trainer! Choose a Pokemon to accompany you on your adventures.")
-    chosen_pokemon = choose_pokemon()
-    print(f"You chose {chosen_pokemon.name}!")
+    story_mode = input("Do you wish to skip the dialogue: [Yes/No]").lower()
+    if story_mode == "yes":
+        print("Hello Trainer! Choose a Pokemon to accompany you on your adventures.")
+        chosen_pokemon = choose_pokemon()
+        print(f"You chose {chosen_pokemon.name}!")
 
-    opponent_pokemon = choose_opponent(chosen_pokemon.type)
-    #print(f"Your opponent chooses {opponent_pokemon.name}!")
-    print("Great choice! Here a Gift")
-    for i in range(3):
-        print(".", end="", flush=True)
-        time.sleep(1)
-    if i == 2:
-        print("\n", end="")
-        
-    print('You have received a Pokedex')
-    time.sleep(2)
+        opponent_pokemon = choose_opponent(chosen_pokemon.type)
+        #print(f"Your opponent chooses {opponent_pokemon.name}!")
+        print("Great choice! Here a Gift")
+        for i in range(3):
+            print(".", end="", flush=True)
+            time.sleep(1)
+        if i == 2:
+            print("\n", end="")
+            
+        print('You have received a Pokedex')
+        time.sleep(2)
 
-    print("let the battle begin")
-    print(f"The opponent sends {opponent_pokemon.name} ")
+        print("let the battle begin")
+        print(f"The opponent sends {opponent_pokemon.name} ")
 
-    print(battle_interface(chosen_pokemon, opponent_pokemon))
+        print(battle_interface(chosen_pokemon, opponent_pokemon))
+
+    else:
+        player = Player("",[])
+        print("Before you stands Professor Birch, excitment unconcealed in his eyes ")
+        print("\n")#-----------------------------
+        player.slow_print('''"Greetings, young Trainer! Welcome to the world of Pokemon! I am Professor Birch, a Pokemon Researcher"''')
+        print("\n")#-----------------------------
+
+        player.slow_print("He geatures excitedly towards the surroundings")
+        print("\n")#-----------------------------
+
+        player.slow_print('''"As you can see, our world is filled with an various amount of pokemon, each with their own abliities."''')
+        print("\n")#-----------------------------
+
+        player.slow_print("He pauses as he reaches into his hag before pulling out a Pokedex")
+        print("\n")#-----------------------------
+
+        player.slow_print('''"Behold, the Pokédex! A wondrous tool to aid you on your path to Pokémon mastery. With it, you'll record data on every encounter"''')
+        print("\n")#-----------------------------
+
+        player.slow_print("'Now, before your journery, you must choose your first Pokemon companion',Professor Birch says with anticaption'I'm interrested in what you'll choose '")
+        chosen_pokemon = choose_pokemon()
+        print(f"You chose {chosen_pokemon.name}!")
+        opponent_pokemon = choose_opponent(chosen_pokemon.type)
+        print("\n")#-----------------------------
+        player_name = input("Oh yes, what's your name: ")
+        player.slow_print("With a warm smile Profesor Birch hands you the Pokedex")
+        print("\n")#-----------------------------
+
+        player.slow_print("Take this Pokedex, it time to start you Pokemon journey. Battle, explore, and make friends along the way as you rise to the top of the Pokemon world. YOUR DESINTY AWAITS!!!!")
+        print("\n")#-----------------------------
+
+        for i in range(3):
+            print(".", end="", flush=True)
+            time.sleep(1)
+        if i == 2:
+            print("\n", end="")
+            
+        player.slow_print('You have received a Pokedex')
+        print("\n")#-----------------------------
+        player.slow_print("As you step out of Professor Birch Lab")
+        print("\n")#-----------------------------
+        # this part will be added later 
+        names = ["Elizabeth","Alexis","Josh","Ryan"]
+        rival = random.choice(names)
+        player.slow_print(f"Trainer {rival} challenges you")
+        print("\n")#-----------------------------
+        print(f"The opponent sends {opponent_pokemon.name} ")
+
+        print(battle_interface(chosen_pokemon, opponent_pokemon))
+
+
+
+
 
     
 
